@@ -35,15 +35,6 @@ public class Main {
         //1.avg
         int avg = (int)Math.round(sum/N);
 
-//        if (tmp < 0){
-//            if (sum/N == tmp){
-//                avg = tmp;
-//            } else {
-//                avg = tmp - 1;
-//            }
-//        } else{
-//            avg = tmp;
-//        }
 
         //2.
         for (int i = 0; i < N / 2; i++) {
@@ -73,6 +64,7 @@ public class Main {
         System.out.println(mid);
         System.out.println(many);
         System.out.println(range);
+        
 
 
     }
