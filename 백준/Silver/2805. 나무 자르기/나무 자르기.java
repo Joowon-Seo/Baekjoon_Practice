@@ -20,7 +20,7 @@ public class Main {
         long left = 0;
         long right = Arrays.stream(arr).max().getAsInt();
         long best = 0;
-        
+
 
 
         while (left <= right){
@@ -28,14 +28,14 @@ public class Main {
             long mid = left + (right - left)/2;
             long rest = 0;
 
-            for (int i = N-1; i >= 0; i--) {
+            for (int i = 0; i < N; i++) {
                 if (rest >= M){
                     break;
                 }
-                
+
                 if (mid < arr[i]){
                     rest += arr[i] - mid;
-                    
+
                 }
             }
 
