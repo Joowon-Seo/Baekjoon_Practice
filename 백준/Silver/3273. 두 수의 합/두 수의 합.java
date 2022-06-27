@@ -8,45 +8,27 @@ public class Main {
         int result = 0;
 
         int n = Integer.parseInt(br.readLine());
-        int[] nums = new int[n];
+        Set<Integer> nums = new HashSet();
         StringTokenizer st = new StringTokenizer(br.readLine());
+
         for (int i = 0; i < n; i++) {
-            nums[i] = Integer.parseInt(st.nextToken());
+
+            int num = Integer.parseInt(st.nextToken());
+            nums.add(num);
+
         }
         int x = Integer.parseInt(br.readLine());
 
-        Arrays.sort(nums);
-
-
-
-        for (int i = 0; i < n; i++) {
-            int p1 = i;
-            int p2 = i+1;
-
-            while (p2 < n){
-                int sum = nums[p1] + nums[p2];
-
-                if (sum == x){
-                    result++;
-                    break;
-                } else if (sum < x){
-                    p2++;
-                } else {
-                    break;
-                }
+        for(int i : nums){
+            if (nums.contains(x-i)){
+                result++;
             }
-
         }
 
 
 
 
-
-
-
-
-
-        bw.write(Integer.toString(result));
+        bw.write(Integer.toString(result/2));
 
         br.close();
         bw.close();
