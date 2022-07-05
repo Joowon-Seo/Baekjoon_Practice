@@ -6,7 +6,11 @@ import java.util.StringTokenizer;
 public class Main {
 
     public static int N;
-    public static int[] board;
+    public static boolean[] check1 = new boolean[15]; // 열에 대한 인덱스 최대 14
+    public static boolean[] check2 = new boolean[30]; // '/' 대각선에 대한 인덱스 최대 (i,j) i+j 28;
+    public static boolean[] check3 = new boolean[30]; // '\' 대각선에 대한 인덱스 최대 (i,j) i-j 음수가 나올 수 있음으로
+                                                      // (1,14) i-j + 14 최대 : (14,1) 27;
+
     public static int cnt;
 
 
@@ -19,53 +23,39 @@ public class Main {
 
         N = Integer.parseInt(br.readLine());
 
+        nQueen(1);
 
-        // 보드판에 행을 1씩 더해 넣을 것 임으로 행이 같은 경우는 나올 수 없을
-        // 따라서 메모리를 줄일 수 있음
-        board = new int[N];
-
-
-
-        bw.write(Integer.toString(nQueen(0)));
+        bw.write(String.valueOf(cnt));
         bw.close();
         br.close();
 
 
     }
 
-    public static int nQueen(int row){
-        if (row == N){
+    public static void nQueen(int row){
+        if (row == N+1){
             cnt++;
-            return cnt;
+            return ;
         }
 
-        for (int i = 0; i < N; i++) {
-            board[row] = i;
+        for (int i = 1; i <= N; i++) {
 
-            if (isPromising(row)){
+            if (!check1[i] && !check2[row + i] && !check3[row-i+14]){
+
+                check1[i] = true;
+                check2[row + i] = true;
+                check3[row - i + 14] = true;
                 nQueen(row + 1);
+                check1[i] = false;
+                check2[row + i] = false;
+                check3[row - i + 14] = false;
+
             }
 
 
         }
-        return cnt;
+
     }
-
-
-    // 유망한지 확인 하는 메소드
-    public static boolean isPromising(int row){
-        // 여기서 열이 같은지, 대각선인지 확인
-        for (int i = 0; i < row; i++) {
-
-            if (board[row] == board[i] || row - i == Math.abs(board[row] - board[i])){
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-
 
 
 }
