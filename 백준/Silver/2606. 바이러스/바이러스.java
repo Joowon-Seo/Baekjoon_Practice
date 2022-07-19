@@ -8,18 +8,12 @@ public class Main {
     static boolean[] visited;
     static HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
     static int cnt;
-
-
-    static class Node{
-
-        int id;
-        int next;
-
-        public Node(int id, int next) {
-            this.id = id;
-            this.next = next;
-        }
-    }
+    
+    // haspMap에 각 정정에 대한 간선의 정보를 기입해줍니다
+    // dfs를 통해 각 정점에서 연결된 정점중 방문하지 않은 정점들을 방문합니다.
+    // 방문할 때 방문기록을 남기고 cnt++를 진행합니다
+    // 결과는 1번 컴퓨터를 포함해 연결된 컴퓨터의 개수가 나옵니다
+    // 출력은 결과값인 cnt - 1을 하면 됩니다.
 
 
 
