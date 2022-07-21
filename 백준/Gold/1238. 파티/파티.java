@@ -15,7 +15,7 @@ public class Main {
     
     public static int N, M, X;
     public static int[] dist;
-    public static ArrayList<ArrayList<Node>> graph;
+    public static ArrayList<Node>[] graph;
     public static int result;
     public static boolean[] visited;
     
@@ -47,11 +47,11 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
         X = Integer.parseInt(st.nextToken());
         
-        graph = new ArrayList<>();
+        graph = new ArrayList[N + 1];
 
         for (int i = 0; i < N + 1; i++) {
             
-            graph.add(new ArrayList<>());
+            graph[i] = (new ArrayList<>());
             
         }
         
@@ -64,7 +64,7 @@ public class Main {
             int to = Integer.parseInt(st.nextToken());
             int weight = Integer.parseInt(st.nextToken());
             
-            graph.get(from).add(new Node(to, weight));
+            graph[from].add(new Node(to, weight));
         }
 
         result = 0;
@@ -105,17 +105,17 @@ public class Main {
 
             Node cur = pq.poll();
 
-            if (dist[cur.to] < cur.weight && visited[cur.to]){
+            if (dist[cur.to] < cur.weight || visited[cur.to]){
                 continue;
             }
 
             visited[cur.to] = true;
 
-            for (int i = 0; i < graph.get(cur.to).size(); i++) {
+            for (int i = 0; i < graph[cur.to].size(); i++) {
 
-                Node adjNode = graph.get(cur.to).get(i);
+                Node adjNode = graph[cur.to].get(i);
 
-                if (dist[adjNode.to] > adjNode.weight + cur.weight && !visited[adjNode.to]){
+                if (dist[adjNode.to] > adjNode.weight + cur.weight){
                     dist[adjNode.to] = adjNode.weight + cur.weight;
                     pq.offer(new Node(adjNode.to, dist[adjNode.to]));
                 }
