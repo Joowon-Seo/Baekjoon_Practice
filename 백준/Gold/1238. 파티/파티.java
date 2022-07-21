@@ -18,7 +18,7 @@ public class Main {
     public static ArrayList<ArrayList<Node>> graph;
     public static int result;
     
-    public static class Node {
+    public static class Node implements Comparable<Node>{
         
         int to;
         int weight;
@@ -26,6 +26,11 @@ public class Main {
         public Node(int to, int weight) {
             this.to = to;
             this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return this.weight - o.weight;
         }
     }
 
@@ -82,7 +87,7 @@ public class Main {
 
     public static int dijkstra(int start, int end){
 
-        PriorityQueue<Node> pq = new PriorityQueue<>((x,y) -> x.weight - y.weight);
+        PriorityQueue<Node> pq = new PriorityQueue<>();
 
 
         dist = new int[N + 1];
