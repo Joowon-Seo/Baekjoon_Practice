@@ -17,6 +17,7 @@ public class Main {
     public static int[] dist;
     public static ArrayList<ArrayList<Node>> graph;
     public static int result;
+    public static boolean[] visited;
     
     public static class Node implements Comparable<Node>{
         
@@ -87,6 +88,7 @@ public class Main {
 
     public static int dijkstra(int start, int end){
 
+        visited = new boolean[N + 1];
         PriorityQueue<Node> pq = new PriorityQueue<>();
 
 
@@ -103,15 +105,17 @@ public class Main {
 
             Node cur = pq.poll();
 
-            if (dist[cur.to] < cur.weight){
+            if (dist[cur.to] < cur.weight && visited[cur.to]){
                 continue;
             }
+
+            visited[cur.to] = true;
 
             for (int i = 0; i < graph.get(cur.to).size(); i++) {
 
                 Node adjNode = graph.get(cur.to).get(i);
 
-                if (dist[adjNode.to] > adjNode.weight + cur.weight){
+                if (dist[adjNode.to] > adjNode.weight + cur.weight && !visited[adjNode.to]){
                     dist[adjNode.to] = adjNode.weight + cur.weight;
                     pq.offer(new Node(adjNode.to, dist[adjNode.to]));
                 }
