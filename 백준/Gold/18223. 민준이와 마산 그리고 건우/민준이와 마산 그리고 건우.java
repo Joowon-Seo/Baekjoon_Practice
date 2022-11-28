@@ -19,7 +19,7 @@ public class Main {
 	public static int[] dist;
 	public static ArrayList<ArrayList<Node>> graph;
 
-	public static class Node {
+	public static class Node implements Comparable<Node>{
 
 		int to;
 		int weight;
@@ -28,11 +28,17 @@ public class Main {
 			this.to = to;
 			this.weight = weight;
 		}
+
+
+		@Override
+		public int compareTo(Node o) {
+			return this.weight - o.weight;
+		}
 	}
 
 
 	public static void main(String[] args) throws IOException {
-		
+
 		// 정점과 간선의 정보가 주어졌고, 모든 정점을 지나갈 필요가 없으며,
 		// 시작점과, 끝점을 정할 수 있고, 최간경로를 물어봤기 때문에 다익스트라 알고리즘을 사용합니다.
 		// 민준이가 목표지점까지 갈 때 지나간 경로에 건우가 있는지를 파악하는 문제
@@ -88,8 +94,7 @@ public class Main {
 
 		dist[start] = 0;
 
-		PriorityQueue<Node> pq = new PriorityQueue<>(
-			(x, y) -> x.weight - y.weight);
+		PriorityQueue<Node> pq = new PriorityQueue<>();
 		pq.offer(new Node(start, 0));
 
 		while (!pq.isEmpty()) {
