@@ -32,6 +32,12 @@ public class Main {
 
 
 	public static void main(String[] args) throws IOException {
+		
+		// 정점과 간선의 정보가 주어졌고, 모든 정점을 지나갈 필요가 없으며,
+		// 시작점과, 끝점을 정할 수 있고, 최간경로를 물어봤기 때문에 다익스트라 알고리즘을 사용합니다.
+		// 민준이가 목표지점까지 갈 때 지나간 경로에 건우가 있는지를 파악하는 문제
+		// 시작점부터 도착점까지의 최단경로와
+		// 시작점 -> 건우 -> 도착점까지의 최단경로가 같다면 해당 조건을 만족합니다.
 
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
@@ -109,4 +115,21 @@ public class Main {
 		return dist[end];
 
 	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
