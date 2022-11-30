@@ -28,7 +28,7 @@ public class Main {
 
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		// 인구 이동이 가능하려면 국경선을 공유하는 두 나라의 인구가 L이상, R명 이하 여야함
+		// 인구 이동이 가능하려면 국경선을 공유하는 두 나라의 인구차이가 L이상, R명 이하 여야함
 
 		N = Integer.parseInt(st.nextToken());
 		L = Integer.parseInt(st.nextToken());
